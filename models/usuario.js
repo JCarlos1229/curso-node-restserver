@@ -35,7 +35,8 @@ const UsuarioSchema = Schema({
 //Esta funcion permite excluir el __v y password al retornar la respuesta al cliente
 //NOTA: Siempre debemos usar funcion normal porque necesitamos el "this"
 UsuarioSchema.methods.toJSON = function () {
-  const { __v, password, ...usuario } = this.toObject();
+  const { __v, password, _id, ...usuario } = this.toObject();
+  usuario.uid = _id;
   return usuario;
 };
 
